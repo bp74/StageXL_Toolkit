@@ -5,10 +5,9 @@ description: The 'Toolkit for Dart' runtime for the StageXL library.
 homepage: http://www.stagexl.org
 environment:
   sdk: '>=1.13.0 <2.0.0'
-documentation: http://www.stagexl.org/docs/api/index.html
 dependencies:
   browser: any
-  stagexl: '>=0.13.0 <0.14.0'
+  stagexl: '>=0.13.3 <0.14.0'
 transformers:
 - $dart2js:
     commandLineOptions: ["--trust-type-annotations", "--trust-primitives"]
