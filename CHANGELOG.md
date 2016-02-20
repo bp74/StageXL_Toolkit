@@ -7,4 +7,3 @@ package. This file is normally updated whenever we push a new version to pub.
   * Create a dedicated 'Toolkit for Dart' package.
   * Removed the 'Toolkit for Dart' related code from StageXL.
   * Initial commit. 
- 
