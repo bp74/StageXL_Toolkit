@@ -241,7 +241,7 @@ class MovieClip extends Sprite {
     if (pos == null) return;
     // prevent _updateTimeline from overwriting the new position because of a reset:
     if (_prevPos == -1) {
-      _prevPos = double.NAN;
+      _prevPos = double.nan;
     }
     _prevPosition = pos;
     _updateTimeline();
