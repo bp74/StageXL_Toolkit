@@ -283,8 +283,7 @@ class MovieClip extends Sprite {
 
       if (target is DisplayObject) {
         // motion tween.
-        DisplayObject child = target as DisplayObject;
-        _addManagedChild(child, offset);
+        _addManagedChild(target, offset);
       } else {
         // state tween.
         if (target.containsKey("state")) {
@@ -305,12 +304,10 @@ class MovieClip extends Sprite {
 
   void _setState(List<dynamic> state, int offset) {
     if (state == null) return;
-    for (var i = 0,
-        l = state.length; i < l; i++) {
+    for (var i = 0, l = state.length; i < l; i++) {
       var o = state[i];
       var target = o["t"];
       if (target is DisplayObject) {
-        var d = target as DisplayObject;
         if (o.containsKey("p")) {
           var p = o["p"];
           for (var n in p.keys) {
@@ -318,60 +315,63 @@ class MovieClip extends Sprite {
             num dv = v is num ? v.toDouble() : 0;
             switch (n) {
               case "off":
-                d.off = v as bool;
+                target.off = v as bool;
                 break;
               case "x":
-                d.x = dv;
+                target.x = dv;
                 break;
               case "y":
-                d.y = dv;
+                target.y = dv;
                 break;
               case "rotation":
-                d.rotation = dv;
+                target.rotation = dv;
                 break;
               case "alpha":
-                d.alpha = dv;
+                target.alpha = dv;
                 break;
               case "scaleX":
-                d.scaleX = dv;
+                target.scaleX = dv;
                 break;
               case "scaleY":
-                d.scaleY = dv;
+                target.scaleY = dv;
                 break;
               case "skewX":
-                d.skewX = dv;
+                target.skewX = dv;
                 break;
               case "skewY":
-                d.skewY = dv;
+                target.skewY = dv;
                 break;
               case "regX":
-                d.pivotX = dv;
+                target.pivotX = dv;
                 break;
               case "regY":
-                d.pivotY = dv;
+                target.pivotY = dv;
                 break;
               case "startPosition":
-                if (target is MovieClip) (target as MovieClip).startPosition = dv.toInt();
+                if (target is MovieClip) target.startPosition = dv.toInt();
                 break;
               case "mode":
-                if (target is MovieClip) (target as MovieClip).mode = v.toString();
+                if (target is MovieClip) target.mode = v.toString();
                 break;
               case "loop":
-                if (target is MovieClip) (target as MovieClip).loop = v as bool;
+                if (target is MovieClip) target.loop = v as bool;
                 break;
               case "graphics":
-                if (target is Shape) (target as Shape).graphics = v as Graphics;
+                if (target is Shape) target.graphics = v as Graphics;
                 break;
               case "textColor":
                 if (target is TextField) {
-                  var field = target as TextField;
-                  if (v is String) field.textColor = int.parse(v.toString()); else if (v != null) field.textColor = dv.toInt();
+                  if (v is String) {
+                    target.textColor = int.parse(v.toString());
+                  } else if (v != null) {
+                    target.textColor = dv.toInt();
+                  }
                 }
                 break;
             }
           }
         }
-        _addManagedChild(d, offset);
+        _addManagedChild(target, offset);
       }
     }
   }
